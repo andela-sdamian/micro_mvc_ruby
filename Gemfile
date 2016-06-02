@@ -1,4 +1,9 @@
+ruby '2.2.3'
 source 'https://rubygems.org'
-
-# Specify your gem's dependencies in micro_mvc_ruby.gemspec
 gemspec
+
+group :test do
+  gem 'coveralls', require: false
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'simplecov', require: false
+end
