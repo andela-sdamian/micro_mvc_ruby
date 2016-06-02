@@ -5,12 +5,15 @@
 
 MicroMvcRuby is an MVC framework built with Rack & Ruby that allows you to build modern day MVC applications. Like most Ruby web frameworks, MicroMvcRuby follows convention over configuration. 
 
->Please note that you cannot use this framework for large scale MVC applications but use it to fully grasp the concept of MVC and how to build one yourself. If you need a large scale MVC web framework then you should consider [Rails](http://rubyonrails.org/) or [Sinatra](http://www.sinatrarb.com/)(for a minimalist web application).
+>Please note that you cannot use this framework for large scale MVC applications but use it to fully grasp the concept of MVC and how to build one yourself. If you need a large scale MVC web framework then you should consider [Rails](http://rubyonrails.org/) or [Sinatra](http://www.sinatrarb.com/) (for a minimalist web application).
 
 # Features  
 This framework offers the following
+
 1. Object Relational Mapper(ORM) - makes it easy for you to access database records in an object-oriented fashion
+
 2. Templating Engine - you don't have to worry about templating 
+
 3. Routes - enables you to create user-friendly URL that maps to controller actions
 
 ## Getting Started
@@ -112,27 +115,38 @@ This is where all corresponding views for each endpoint are kept. Ensure each of
 MicroMvcRuby allows you to easily create a custom route with available `HTTP verbs` that maps `routes` to controller actions. A simple route file should look like this
 
 ```
-TakApplication.routes.draw do 
+TaskApplication.routes.draw do 
     get "/", to: "task#index"
     post "/create_task", to: "task#create"
     put "/update_task/:id", to: "task#update"
     delete "/delete/:id", to: "task#destroy"
 end 
+
 ```
 # Dependecies 
 The following gems made this framework a reality 
+
 1. [Rack](http://rack.github.io/)
+
 2. [Tilt](https://github.com/rtomayko/tilt)
+
 3. [Rack-Test](https://github.com/brynary/rack-test)
+
 4. [Rspec](http://rspec.info/documentation/) 
+
 5. [Rake](https://github.com/ruby/rake) 
 
 # Limitations
 Being a minimalist framework, MicorMvcRuby has its own set of shortcomings which includes 
+
 1. Lack of generators: there are currently no generators in the application as present in frameworks like rails. You would have to manually create the folder structure yourself 
+
 2. Caching and precompiling of assets in also not available in this framework 
+
 3. This framework does not support database migration 
+
 4. No error logging to console
+
 5. Mini helpers: this framework falls short of helpers which include but to mention a few (form_helpers, Date helpers, and a whole lot more) 
 
 # Running the test 
