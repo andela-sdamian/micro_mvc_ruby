@@ -1,0 +1,7 @@
+AllCops:
+  Exclude:
+    - "vendor/**/*"
+    - "bin/**/*"
+    - "Rakefile"
+    - "micro_mvc_ruby.gemspec"
+  UseCache: false
