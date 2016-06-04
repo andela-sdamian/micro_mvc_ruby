@@ -1,16 +1,14 @@
-require 'micro_mvc_ruby/utilities/string_patching'
-
-module MicorMvcRuby
-  module Router
-    class Routing
+module MicroMvcRuby 
+  module Routing
+    class Router
       attr_accessor :endpoints
 
       def draw(&block)
-        instance_eval(&block)
+        instance_eval &block
       end
 
       def root(to)
-        get '/', to: to
+        get "/", to: to
       end
 
       def endpoints
@@ -18,7 +16,7 @@ module MicorMvcRuby
       end
 
       def self.verbs
-        [:get, :post, :put, :patch, :delete]
+         [:get, :post, :put, :patch, :delete]
       end
 
       private
@@ -36,14 +34,14 @@ module MicorMvcRuby
       def controller_and_action_for(target)
         if target =~ /^([^#]+)#([^#]+)$/
           return [
-            "#{Regexp.last_match(1).camel_case}Controller".constantize,
-            Regexp.last_match(2).intern]
+            "#{Regexp.last_match(1).camel_case}Controller",
+            Regexp.last_match(2).to_sym]
         end
       end
 
-      verbs.each do |method|
-        define_method(method) do |path, to|
-          path = "/#{path}" unless path[0] == '/'
+      verbs.each do |method_name|
+        define_method(method_name) do |path, to:|
+          path = "/#{path}" unless path[0] == "/"
           controller_and_action = controller_and_action_for(to)
           @route_data = { path: path,
                           pattern: pattern(path),

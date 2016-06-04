@@ -1,5 +1,5 @@
 module MicroMvcRuby
-  module Router
+  module Routing 
     class Mapper
       attr_reader :request, :endpoints
 

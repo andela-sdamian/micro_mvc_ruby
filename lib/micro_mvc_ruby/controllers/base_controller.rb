@@ -4,8 +4,8 @@ module MicroMvcRuby
   class BaseController
     attr_reader :request, :params
 
-    def initialize(env)
-      @request ||= Rack::Request.new(env)
+    def initialize(request)
+      @request = request 
       @params = request.params
     end
 
@@ -33,14 +33,18 @@ module MicroMvcRuby
 
     def view_template(view_name, locals = {})
       Tilt::ERBTemplate.new(view_path(view_name))
-                       .render(self, locals.merge(view_variables))
+                       .render(self)
     end
 
-    def view_variables
-      Hash[instance_variables.collect do |v|
-        [v.intern, instance_variable_get(v)]
-      end]
-    end
+    # def view_variables
+    #   hash = {}
+    #   variables  = instance_variables
+    #   variables.each { |var| hash[var[1..-1]] = instance_variable_get(var) }
+    #   require 'ostruct'
+    #   require 'pry'
+    #   binding.pry 
+    #   OpenStruct.new(hash)
+    # end
 
     def controller_name
       self.class.to_s.gsub(/Controller$/, '').snake_case
