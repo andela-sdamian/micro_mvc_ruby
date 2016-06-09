@@ -1,5 +1,5 @@
 module MicroMvcRuby
-  module Routing 
+  module Routing
     class Mapper
       attr_reader :request, :endpoints
 
@@ -9,8 +9,9 @@ module MicroMvcRuby
 
       def map_to_route(request)
         @request = request
-        path   = request.path_info
-        method = request.request_method.downcase.intern
+        path = request.path_info
+        path.gsub!(/(.+)\/$/, '\1')
+        method = request.request_method.downcase.to_sym 
         result = endpoints[method].detect do |endpoint|
           match_path_with_pattern(path, endpoint)
         end

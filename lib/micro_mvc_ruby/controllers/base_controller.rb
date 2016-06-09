@@ -5,11 +5,11 @@ module MicroMvcRuby
     attr_reader :request, :params
 
     def initialize(request)
-      @request = request 
+      @request = request
       @params = request.params
     end
 
-    def response(body, status = 200, headers = {})
+    def response(body, status = 200, headers = { 'Content-Type' => 'text/html' })
       @response = Rack::Response.new(body, status, headers)
     end
 
@@ -18,7 +18,7 @@ module MicroMvcRuby
     end
 
     def redirect_to(url)
-      @response = response({}, 302, 'location' => url)
+      @response = response({}, 302, 'location' => url, 'Content-Type' => 'text/html')
     end
 
     def render(*args)
@@ -31,20 +31,10 @@ module MicroMvcRuby
       )
     end
 
-    def view_template(view_name, locals = {})
+    def view_template(view_name, _locals = {})
       Tilt::ERBTemplate.new(view_path(view_name))
                        .render(self)
     end
-
-    # def view_variables
-    #   hash = {}
-    #   variables  = instance_variables
-    #   variables.each { |var| hash[var[1..-1]] = instance_variable_get(var) }
-    #   require 'ostruct'
-    #   require 'pry'
-    #   binding.pry 
-    #   OpenStruct.new(hash)
-    # end
 
     def controller_name
       self.class.to_s.gsub(/Controller$/, '').snake_case
