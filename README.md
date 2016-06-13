@@ -1,6 +1,6 @@
 # MicroMvcRuby
 
-[![Build Status](https://travis-ci.org/andela-sdamian/micro_mvc_ruby.svg?branch=master)](https://travis-ci.org/andela-sdamian/micro_mvc_ruby) [![Build Status](https://travis-ci.org/andela-sdamian/micro_mvc_ruby.svg?branch=master)](https://travis-ci.org/andela-sdamian/micro_mvc_ruby) [![Code Climate](https://codeclimate.com/github/andela-sdamian/micro_mvc_ruby/badges/gpa.svg)](https://codeclimate.com/github/andela-sdamian/micro_mvc_ruby)
+[![Build Status](https://travis-ci.org/andela-sdamian/micro_mvc_ruby.svg?branch=master)](https://travis-ci.org/andela-sdamian/micro_mvc_ruby) [![Coverage Status](https://coveralls.io/repos/github/andela-sdamian/micro_mvc_ruby/badge.svg?branch=master)](https://coveralls.io/github/andela-sdamian/micro_mvc_ruby?branch=master) [![Code Climate](https://codeclimate.com/github/andela-sdamian/micro_mvc_ruby/badges/gpa.svg)](https://codeclimate.com/github/andela-sdamian/micro_mvc_ruby)
 
 
 MicroMvcRuby is an MVC framework built with Rack & Ruby that allows you to build modern day MVC applications. Like most Ruby web frameworks, MicroMvcRuby follows convention over configuration. 
@@ -37,18 +37,25 @@ Or install it yourself as:
 After completion of the above steps, you would want to create a folder structure like so. 
 ```
 app 
- > assets 
-   > css
-   > js
- > controllers
- > models
- > views
-config/
- . application.rb
- . routes.rb 
+ | assets 
+ |  - css
+ |  - js
+ | controllers
+ | models
+ | views
+config
+ - application.rb
+ - routes.rb 
 Gemfile
 config.ru 
 ```
+
+## Note
+
+To use files in the assests directory, you will have to include the rack middleware in your config.ru file 
+
+`use Rack::Static, urls: ["/css"], root: "app/assets"`
+
 # Folder Structure & Usage
 As you see the folder structure above mimics the rails folder structure, if you have built a rails app, working with this framework should be trivial. Now let us work through each folder and file. 
 Before your proceed, ensure you adhere to this naming convention found [Here](http://itsignals.cascadia.com.au/?p=7).
@@ -94,7 +101,7 @@ class Task < MicroRubyMvc::BaseModel
     end 
 end
 ```
-Inheriting from `MicroRubyMvc::BaseModel` enables you to store instances of all model object in a database, and access this record later in an object oriented fashion. Now, lets go through each of the available methods in our `Task` model above. 
+Inheriting from `MicroRubyMvc::BaseRecord` enables you to store instances of all model object in a database, and access this record later in an object oriented fashion. Now, lets go through each of the available methods in our `Task` model above. 
 
 The `to_table` method is responsible for converting your class into its database equivalent. Ensure all nouns are set to its plural form when passing an argument. For instance, if  your have model `Event` then pass `events` to `to_table` method. 
 
