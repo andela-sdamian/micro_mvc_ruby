@@ -23,12 +23,12 @@ module MicroMvcRuby
 
       def pattern(path)
         placeholders = []
-        path.gsub!(/(:\w+)/) do |match|
+        reg_exp_part = path.gsub(/(:\w+)/) do |match|
           placeholders << match[1..-1].freeze
           "(?<#{placeholders.last}>[^/?#]+)"
         end
 
-        [/^#{path}$/, placeholders]
+        [/^#{reg_exp_part}$/, placeholders]
       end
 
       def controller_and_action_for(target)

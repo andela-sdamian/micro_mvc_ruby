@@ -1,15 +1,5 @@
-require 'micro_mvc_ruby/routing/mapper'
-require 'micro_mvc_ruby/routing/router'
-require 'micro_mvc_ruby/routing/route'
-
-require 'micro_mvc_ruby/utilities/object_patching'
-require 'micro_mvc_ruby/controllers/base_controller'
-
-require 'micro_mvc_ruby/active_record/database'
-require 'micro_mvc_ruby/active_record/base_record'
-
-require 'micro_mvc_ruby/not_found.rb'
-require 'micro_mvc_ruby/version'
+Gem.find_files('micro_mvc_ruby/**/*.rb').each { |path| require path }
+require 'pry'
 
 module MicroMvcRuby
   class Application
@@ -31,4 +21,3 @@ module MicroMvcRuby
     end
   end
 end
-

@@ -14,6 +14,7 @@ SQL
       end
     end
 
+    alias save! save
     def update(params)
       Database.run_query(<<SQL, update_values(params))
 UPDATE #{self.class.table_name}

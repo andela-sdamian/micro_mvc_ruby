@@ -11,7 +11,7 @@ module MicroMvcRuby
         @request = request
         path = request.path_info
         path.gsub!(/(.+)\/$/, '\1')
-        method = request.request_method.downcase.to_sym 
+        method = request.request_method.downcase.to_sym
         result = endpoints[method].detect do |endpoint|
           match_path_with_pattern(path, endpoint)
         end

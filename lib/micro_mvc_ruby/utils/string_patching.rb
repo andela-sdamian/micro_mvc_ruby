@@ -1,5 +1,5 @@
 class String
-  def pluralize
+  def to_plural
     gsub!(/([^aeiouy]|qu)y$/i, '\1ies')
     gsub!(/(ss|z|ch|sh|x)$/i, '\1es')
     gsub!(/(is)$/i, 'es')

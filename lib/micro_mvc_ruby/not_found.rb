@@ -8,6 +8,8 @@ module MicroMvcRuby
   </head>
   <body>
   <h1>Ooops! page not found - 404</h1>
+
+  <h3>&#9786; <a href="/">Go Home</a></h3>
   </body>
       </html>
 HTML

@@ -2,11 +2,13 @@ require 'tilt'
 
 module MicroMvcRuby
   class BaseController
-    attr_reader :request, :params
-
+    attr_reader :request
     def initialize(request)
       @request = request
-      @params = request.params
+    end
+
+    def params
+      request.params
     end
 
     def response(body, status = 200, headers = { 'Content-Type' => 'text/html' })
