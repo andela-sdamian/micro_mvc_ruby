@@ -57,7 +57,7 @@ describe 'Task Application', type: :feature do
       fill_in('task[body]', with: new_task.body)
       click_button('Update Task')
 
-      expect(page.current_path).to eq '/tasks'
+      expect(page.current_path).to eq "/task/#{Task.last.id}"
       expect(page).to have_content(new_task.title)
       expect(page).to have_content(new_task.body)
     end

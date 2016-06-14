@@ -1,14 +1,19 @@
 module MicroMvcRuby
   class Sequel
+
+    def table_name 
+      self.class.table_name
+    end 
+
     def save
       if id
         Database.run_query(<<SQL, update_records)
-UPDATE #{self.class.table_name}
+UPDATE #{table_name}
 SET #{update_table_placeholders} WHERE id = ?
 SQL
       else
         Database.run_query(<<SQL, new_record_value)
-INSERT INTO #{self.class.table_name} (#{table_columns})
+INSERT INTO #{table_name} (#{table_columns})
 VALUES (#{new_table_placeholders})
 SQL
       end
@@ -17,14 +22,14 @@ SQL
     alias save! save
     def update(params)
       Database.run_query(<<SQL, update_values(params))
-UPDATE #{self.class.table_name}
+UPDATE #{table_name}
 SET #{update_record_placeholders(params)} WHERE id=?
 SQL
     end
 
     def destroy
       Database.run_query(<<SQL, id)
-DELETE FROM #{self.class.table_name} WHERE id = ?
+DELETE FROM #{table_name} WHERE id = ?
 SQL
     end
 
@@ -80,16 +85,11 @@ SQL
         map_row_to_object(row)
       end
 
-      def destroy(id)
-        Database.run_query(<<SQL, id)
-DELETE FROM #{table_name} WHERE id = ?
-SQL
-      end
-
       def destroy_all
         Database.run_query(<<SQL)
-DELETE FROM #{@table}
+DROP TABLE #{@table}
 SQL
+      create_table
       end
     end
   end
