@@ -1,0 +1,24 @@
+<h1>Update Todo</h1>
+
+<form action="/task/<%=@task.id%>" method="post">
+  <input type="hidden" name="_method" value="put">
+
+  <input type="hidden" name="id" value="<%= @task.id %>">
+  <label for="title">Title</label>
+  <br/>
+  <input type="text" name="task[title]" value="<%= @task.title %>" required>
+  <br /><br />
+  <label for="body">Body</label><br />
+  <textarea name="task[body]" cols="30" rows="10" value="" required><%= @task.body %></textarea>
+  <br /><br />
+  <label>Status</label>
+  <br />
+  <label><input type="radio" name="task[status]" value="done" <%= 'checked' if @task.status == 'done'%>>Done</label> 
+  <label><input type="radio" name="task[status]" value="pending" <%= 'checked' if @task.status == 'pending'%>>Pending</label>
+  <br /><br />
+  <button type="submit">Update Task</button>
+</form>
+
+<a href="/task/<%= @task.id %>">Show</a> | 
+<a href="/task/<%= @task.id %>/edit">Edit</a>
+

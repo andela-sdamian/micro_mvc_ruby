@@ -1,0 +1,5 @@
+source 'https://rubygems.org'
+
+gem 'micro_mvc_ruby', path: '../../../micro_mvc_ruby'
+gem 'sqlite3'
+gem 'pry'

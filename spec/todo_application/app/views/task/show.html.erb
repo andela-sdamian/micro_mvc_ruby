@@ -1,0 +1,13 @@
+<h1><%= @task.title %></h1>
+<hr />
+
+<p>
+  <%= @task.body %>
+</p>
+
+<p>
+  <%= @task.status %>
+</p>
+
+<a href="/task/<%= @task.id %>/edit">Edit</a> |
+<a href="/">Back</a>

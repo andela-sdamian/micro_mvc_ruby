@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'todo_app/app/models/task'
+require 'todo_application/app/models/task'
 
 describe MicroMvcRuby::Sequel do
   after(:each) do

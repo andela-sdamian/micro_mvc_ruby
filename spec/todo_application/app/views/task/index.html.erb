@@ -1,0 +1,80 @@
+<h1>Task List</h1>
+
+<hr/>
+
+<a href="/task/new">Create New Todo</a>
+
+<br />
+
+<h2>Pending Tasks</h2>
+<% if @pending.empty? %> 
+      <h2><i>You have no pending task!</i></h2>
+<% else %>
+<table border="2px" cellpadding="5">
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Status</th>
+    <th colspan="3">Action</th>
+  </tr>
+  <% @pending.each.with_index(1) do |task, index| %>
+    <tr>
+      <td><%= index %></td>
+      <td><%= task.title %></td>
+      <td><%= teaser(task.body) %></td>
+      <td><%= task.status %></td>
+      <td><a href="/task/<%= task.id %>">Show</a></td>
+      <td><a href="/task/<%= task.id %>/edit">Edit</a></td>
+      <td>
+        <form action="/task/<%= task.id %>" method="post" onsubmit="return deleteRecord()">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<hr />
+
+<h2>Completed Tasks</h2>
+<% if @done.empty? %> 
+      <h3><i>You have no completed task</i></h3>
+<% else %> 
+     
+<table border="2px" cellpadding="5">
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Status</th>
+    <th colspan="3">Action</th>
+  </tr>
+  <% @done.each.with_index(1) do |task, index| %>
+  <tr>
+      <td><%= index %></td>
+      <td><%= task.title %></td>
+      <td><%= teaser(task.body)%></td>
+      <td><%= task.status %></td>
+      <td><a href="/task/<%= task.id %>">Show</a></td>
+      <td><a href="/task/<%= task.id %>/edit">Edit</a></td>
+      <td>
+        <form action="/task/<%= task.id %>" method="post" onsubmit="return deleteRecord()">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+
+
+<script>
+  function deleteRecord() {
+    var result = confirm("Are you sure?");
+    if (!result){return false;} 
+  }
+</script>

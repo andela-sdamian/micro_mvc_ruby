@@ -1,0 +1,33 @@
+PATH
+  remote: ../../../micro_mvc_ruby
+  specs:
+    micro_mvc_ruby (0.1.0)
+      pry
+      rack (~> 1.6.4)
+      sqlite3 (~> 1.3.11)
+      tilt (~> 2.0.4)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    coderay (1.1.1)
+    method_source (0.8.2)
+    pry (0.10.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    rack (1.6.4)
+    slop (3.6.0)
+    sqlite3 (1.3.11)
+    tilt (2.0.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  micro_mvc_ruby!
+  pry
+  sqlite3
+
+BUNDLED WITH
+   1.11.2
