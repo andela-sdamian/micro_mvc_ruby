@@ -2,7 +2,8 @@ require 'simplecov'
 SimpleCov.start
 require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
-
+require 'coveralls'
+Coveralls.wear!
 require 'micro_mvc_ruby'
 require 'rack'
 require 'rspec'

@@ -52,7 +52,7 @@ config.ru
 
 ## Note
 
-To use files in the assests directory, you will have to include the rack middleware in your config.ru file 
+To use files in the assests directory, you will have to include the rack middleware in your `config.ru` file 
 
 `use Rack::Static, urls: ["/css"], root: "app/assets"`
 
@@ -86,10 +86,10 @@ end
 As you may know, controllers are the mediators between your views and models, ensure you have a corresponding template for each public endpoints (action) in your `views` folder. In rails for instance, you can either call `render` explicitly or leave it to the framework to do it implicitly - the same applies to MicroMvcRuby calling `render` is optional.
 
 ##### models
-This folder is where you keep all models for your application. All your models should inherit from `MicroRubyMvc::BaseModel` 
+This folder is where you keep all models for your application. All your models should inherit from `MicroRubyMvc::BaseRecord` 
 
 ```
-class Task < MicroRubyMvc::BaseModel 
+class Task < MicroRubyMvc::BaseRecord  
     to_table :tasks 
     property :task_id, type: :integer, primary_key: true 
     property :name, type: :text, nullable: false
