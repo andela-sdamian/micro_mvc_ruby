@@ -55,10 +55,10 @@ module MicroMvcRuby
       end
 
       def create_table
-        Database.run_query(<<SQL)
-CREATE TABLE
-IF NOT EXISTS #{@table} (#{table_properties})
-SQL
+        Database.run_query("
+          CREATE TABLE
+          IF NOT EXISTS #{@table} (#{table_properties})
+          ")
         make_methods
       end
 

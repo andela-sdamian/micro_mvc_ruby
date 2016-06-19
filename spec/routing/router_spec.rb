@@ -1,12 +1,5 @@
 require 'spec_helper'
-class MicroMvcRuby::Routing::Router
-  attr_reader :route_data
-
-  def draw(&block)
-    instance_eval(&block)
-    self
-  end
-end
+require_relative '../helpers/router_helper'
 
 describe MicroMvcRuby::Routing::Router do
   def draw(&block)

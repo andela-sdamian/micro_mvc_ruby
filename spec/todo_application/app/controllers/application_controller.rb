@@ -1,2 +1,2 @@
-class ApplicationController < MicroMvcRuby::BaseController 
+class ApplicationController < MicroMvcRuby::BaseController
 end

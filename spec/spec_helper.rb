@@ -1,15 +1,14 @@
 require 'simplecov'
 SimpleCov.start
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start
+
 require 'coveralls'
-Coveralls.wear!
 require 'micro_mvc_ruby'
 require 'rack'
 require 'rspec'
 
+Coveralls.wear!
+
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-$LOAD_PATH.unshift File.expand_path('../../spec', __FILE__)
 
 RSpec.shared_context type: :feature do
   require 'capybara/rspec'
