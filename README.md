@@ -1,6 +1,5 @@
 # MicroMvcRuby
-
-[![Build Status](https://travis-ci.org/andela-sdamian/micro_mvc_ruby.svg?branch=master)](https://travis-ci.org/andela-sdamian/micro_mvc_ruby) [![Coverage Status](https://coveralls.io/repos/github/andela-sdamian/micro_mvc_ruby/badge.svg?branch=master)](https://coveralls.io/github/andela-sdamian/micro_mvc_ruby?branch=master) [![Code Climate](https://codeclimate.com/github/andela-sdamian/micro_mvc_ruby/badges/gpa.svg)](https://codeclimate.com/github/andela-sdamian/micro_mvc_ruby)
+[![Build Status](https://travis-ci.org/andela-sdamian/antbucket.svg?branch=master)](https://travis-ci.org/andela-sdamian/antbucket) [![Code Climate](https://codeclimate.com/github/andela-sdamian/micro_mvc_ruby/badges/gpa.svg)](https://codeclimate.com/github/andela-sdamian/micro_mvc_ruby)
 
 
 MicroMvcRuby is an MVC framework built with Rack & Ruby that allows you to build modern day MVC applications. Like most Ruby web frameworks, MicroMvcRuby follows convention over configuration. 
@@ -95,10 +94,7 @@ class Task < MicroRubyMvc::BaseRecord
     property :name, type: :text, nullable: false
     property :description, type: :text 
     create_table
-    
-    def self.all_tasks 
-        all
-    end 
+
 end
 ```
 Inheriting from `MicroRubyMvc::BaseRecord` enables you to store instances of all model object in a database, and access this record later in an object oriented fashion. Now, lets go through each of the available methods in our `Task` model above. 
