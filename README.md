@@ -1,5 +1,5 @@
 # MicroMvcRuby
-[![Build Status](https://travis-ci.org/andela-sdamian/antbucket.svg?branch=master)](https://travis-ci.org/andela-sdamian/antbucket) [![Code Climate](https://codeclimate.com/github/andela-sdamian/micro_mvc_ruby/badges/gpa.svg)](https://codeclimate.com/github/andela-sdamian/micro_mvc_ruby)
+[![Coverage Status](https://coveralls.io/repos/github/andela-sdamian/micro_mvc_ruby/badge.svg?branch=master)](https://coveralls.io/github/andela-sdamian/micro_mvc_ruby?branch=master) [![Build Status](https://travis-ci.org/andela-sdamian/micro_mvc_ruby.svg?branch=master)](https://travis-ci.org/andela-sdamian/micro_mvc_ruby) [![Code Climate](https://codeclimate.com/github/andela-sdamian/micro_mvc_ruby/badges/gpa.svg)](https://codeclimate.com/github/andela-sdamian/micro_mvc_ruby)
 
 
 MicroMvcRuby is an MVC framework built with Rack & Ruby that allows you to build modern day MVC applications. Like most Ruby web frameworks, MicroMvcRuby follows convention over configuration. 
