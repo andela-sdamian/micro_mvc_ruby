@@ -1,7 +1,6 @@
 language: ruby
 rvm:
  - 2.2.3
-cache: bundler
-addons:
-  code_climate:
-    repo_token: eeac62887b6cb64293f2c07f7335c5dd0d23c8db4f6145a95028195148bd298e bundle exec rspec
+env:
+  - TESTFOLDER=spec
+script: "bundle exec rspec $TESTFOLDER"
