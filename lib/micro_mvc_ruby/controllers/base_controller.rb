@@ -33,9 +33,8 @@ module MicroMvcRuby
       )
     end
 
-    def view_template(view_name, _locals = {})
-      Tilt::ERBTemplate.new(view_path(view_name))
-                       .render(self)
+    def view_template(view_name, locals = {})
+      Tilt::ERBTemplate.new(view_path(view_name)).render(self, locals)
     end
 
     def controller_name

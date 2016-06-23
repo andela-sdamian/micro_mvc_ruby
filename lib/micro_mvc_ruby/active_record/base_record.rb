@@ -49,9 +49,9 @@ module MicroMvcRuby
         @table
       end
 
-      def property(column_name, *args)
+      def property(column_name, attributes)
         @properties ||= {}
-        @properties[column_name] = args.first
+        @properties[column_name] = attributes
       end
 
       def create_table
@@ -72,7 +72,7 @@ module MicroMvcRuby
           end
           all_properties << properties.join(' ')
         end
-
+        
         all_properties.join(', ')
       end
 
@@ -99,7 +99,7 @@ module MicroMvcRuby
       end
 
       def map_row_to_object(row)
-        model = new
+        model = new 
         @properties.each_key.with_index do |value, index|
           model.send("#{value}=", row[index])
         end
