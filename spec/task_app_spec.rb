@@ -4,6 +4,10 @@ describe 'Task Application', type: :feature do
   after(:each) do
     Task.destroy_all
   end
+  
+  before(:each) do 
+    Task.destroy_all
+  end
 
   describe "GET '/' " do
     it 'redirects to default page' do
