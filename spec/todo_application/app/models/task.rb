@@ -1,4 +1,4 @@
-class Task < MicroMvcRuby::BaseRecord
+class Task < MicroMvcRuby::BaseModel 
   to_table :tasks
   property :id, type: :integer, primary_key: true
   property :title, type: :text, nullable: false

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'todo_application/app/models/task'
 
-describe MicroMvcRuby::Sequel do
+describe MicroMvcRuby::BaseModel do
   after(:each) do
     Task.destroy_all
   end
