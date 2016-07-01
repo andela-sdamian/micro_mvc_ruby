@@ -1,5 +1,5 @@
 module MicroMvcRuby
-  module DbHelper 
+  module DbHelper
     def to_table(table_name)
       @table ||= table_name
     end
@@ -16,10 +16,8 @@ module MicroMvcRuby
     end
 
     def create_table
-      Database.execute("
-        CREATE TABLE
-        IF NOT EXISTS #{table_name} (#{table_properties})
-        ")
+      Database.execute("CREATE TABLE IF NOT EXISTS #{table_name} 
+                       (#{table_properties})")
     end
 
     def table_properties
@@ -32,7 +30,7 @@ module MicroMvcRuby
         end
         all_properties << properties.join(' ')
       end
-      
+
       all_properties.join(', ')
     end
 
@@ -52,13 +50,23 @@ module MicroMvcRuby
       @properties.keys.join(',')
     end
 
+    def columns_placeholder(columns)
+      if columns.size > 1
+        first_condition = "WHERE #{columns.first} = ? "
+        other_conditions = columns[1..-1].map { |column| "AND #{column} = ?" }
+        first_condition + other_conditions.join(' ')
+      else
+        "WHERE #{columns.first} = ? "
+      end
+    end
+
     def map_row_to_object(row)
-      model = new 
+      model = new
       @properties.each_key.with_index do |value, index|
         model.send("#{value}=", row[index])
       end
 
       model
     end
-  end 
-end 
+  end
+end
