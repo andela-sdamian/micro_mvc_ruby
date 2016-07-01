@@ -31,7 +31,11 @@ class TaskController < ApplicationController
   def update
     task_params = params['task']
     @task = Task.find(params['id'])
-    @task.update(title: task_params['title'], body: task_params['body'], status: task_params['status'])
+
+    @task.update(title: task_params['title'],
+                 body: task_params['body'],
+                 status: task_params['status'])
+
     redirect_to "/task/#{@task.id}"
   end
 
@@ -40,13 +44,5 @@ class TaskController < ApplicationController
     @task.destroy
 
     redirect_to '/'
-  end
-
-  def teaser(str)
-    if str.size < 20
-      str
-    else
-      str[0, 20] + '...'
-    end
   end
 end
