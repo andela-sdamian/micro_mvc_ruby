@@ -5,7 +5,7 @@ require 'coveralls'
 require 'micro_mvc_ruby'
 require 'rack'
 require 'rspec'
-
+require 'todo_application/app/models/task'
 Coveralls.wear!
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)

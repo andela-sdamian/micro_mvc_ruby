@@ -1,4 +1,4 @@
-module MicroMvcRuby 
+module MicroMvcRuby
   module Routing
     class Router
       attr_accessor :endpoints
@@ -8,7 +8,7 @@ module MicroMvcRuby
       end
 
       def root(to)
-        get "/", to: to
+        get '/', to: to
       end
 
       def endpoints
@@ -16,7 +16,7 @@ module MicroMvcRuby
       end
 
       def self.verbs
-         [:get, :post, :put, :patch, :delete]
+        [:get, :post, :put, :patch, :delete]
       end
 
       private
@@ -41,7 +41,7 @@ module MicroMvcRuby
 
       verbs.each do |method_name|
         define_method(method_name) do |path, to:|
-          path = "/#{path}" unless path[0] == "/"
+          path = "/#{path}" unless path[0] == '/'
           controller_and_action = controller_and_action_for(to)
           @route_data = { path: path,
                           pattern: pattern(path),

@@ -4,7 +4,7 @@ require_relative 'database'
 require 'sqlite3'
 
 module MicroMvcRuby
-  class BaseModel 
+  class BaseModel
     extend MicroMvcRuby::DbHelper
     include MicroMvcRuby::QueryHelper
 
@@ -14,23 +14,22 @@ module MicroMvcRuby
 
     def save
       if id
-        Database.execute("
-          UPDATE #{table_name} SET #{update_table_placeholders}
-          WHERE id = ? ", update_records)
+        Database.execute("UPDATE #{table_name}
+                          SET #{update_table_placeholders}
+                          WHERE id = ? ", update_records)
       else
-        Database.execute("
-          INSERT INTO #{table_name} (#{table_columns})
-          VALUES (#{new_table_placeholders})
-          ", new_record_value)
+        Database.execute("INSERT INTO #{table_name}
+                         (#{table_columns}) VALUES (#{new_table_placeholders})
+                         ", new_record_value)
       end
     end
 
-    alias save! save
+    alias_method :save!, :save
 
     def update(params)
-      Database.execute("UPDATE #{table_name}
-      SET #{update_record_placeholders(params)}
-      WHERE id=?", update_values(params))
+      Database.execute("UPDATE #{table_name} SET
+                       #{update_record_placeholders(params)}WHERE id=?", 
+                       update_values(params))
     end
 
     def destroy
@@ -38,45 +37,45 @@ module MicroMvcRuby
     end
 
     def self.find_by(params)
-      key = params.keys[0].to_s
-      value = params.values[0].to_s
-      row = Database.execute("SELECT #{column_keys} FROM #{table_name}
-            WHERE #{key} = ? ", value).first
+      row = Database.execute("SELECT * FROM #{table_name}
+                              #{columns_placeholder(params.keys)}",
+                             params.values).first
 
       map_row_to_object(row)
     end
 
     def self.all
-      data = Database.execute("
-             SELECT * FROM #{table_name} ORDER BY created_at DESC ")
+      data = Database.execute("SELECT * FROM #{table_name}
+                               ORDER BY created_at DESC ")
 
       data.map { |row| map_row_to_object(row) }
     end
 
     def self.where(query_matcher, value)
-      data = Database.execute("SELECT * FROM #{table_name} 
-              WHERE #{query_matcher} ORDER BY created_at DESC", value)
+      data = Database.execute("SELECT * FROM #{table_name} WHERE
+                               #{query_matcher} ORDER BY
+                               created_at DESC", value)
 
       data.map { |row| map_row_to_object(row) }
     end
 
     def self.last
-      row = Database.execute("
-            SELECT * FROM #{table_name} ORDER BY id DESC LIMIT 1").first
+      row = Database.execute("SELECT * FROM #{table_name}
+                              ORDER BY id DESC LIMIT 1").first
 
       map_row_to_object(row)
     end
 
     def self.first
-      row = Database.execute("
-            SELECT * FROM #{table_name} ORDER BY id LIMIT 1").first
+      row = Database.execute("SELECT * FROM #{table_name}
+                              ORDER BY id LIMIT 1").first
 
       map_row_to_object(row)
     end
 
     def self.find(id)
-      row = Database.execute("
-            SELECT * FROM #{table_name} WHERE id = ?", id).first
+      row = Database.execute("SELECT * FROM #{table_name}
+                              WHERE id = ?", id).first
 
       map_row_to_object(row)
     end
@@ -87,6 +86,7 @@ module MicroMvcRuby
 
     def self.destroy_all
       Database.execute("DROP TABLE #{table_name}")
+
       create_table
     end
   end

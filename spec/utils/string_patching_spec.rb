@@ -10,16 +10,8 @@ describe 'String Patching' do
       it { expect('Task'.snake_case).to eq 'task' }
     end
 
-    context 'Task' do
-      it { expect('Task'.snake_case).to eq 'task' }
-    end
-
     context 'Task::task' do
       it { expect('Task::task'.snake_case).to eq 'task/task' }
-    end
-
-    context 'TaskController' do
-      it { expect('TaskController'.snake_case).to eq 'task_controller' }
     end
 
     context 'Taskcontroller' do

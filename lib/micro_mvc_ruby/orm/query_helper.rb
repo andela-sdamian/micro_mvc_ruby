@@ -1,5 +1,5 @@
-module MicroMvcRuby 
-  module QueryHelper 
+module MicroMvcRuby
+  module QueryHelper
     def table_columns
       self.class.column_keys.gsub('id, ', '')
     end
@@ -10,7 +10,7 @@ module MicroMvcRuby
       properties.map { |method| send(method) }
     end
 
-    alias new_record_value record_values
+    alias_method :new_record_value, :record_values
 
     def update_records
       record_values << send(:id)
@@ -36,5 +36,5 @@ module MicroMvcRuby
       placeholders.delete(:id)
       placeholders.map { |col| "#{col}=?" }.join(',')
     end
-  end 
-end 
+  end
+end
